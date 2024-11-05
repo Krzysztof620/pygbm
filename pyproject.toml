@@ -34,7 +34,7 @@ dependencies = [
 
 
 [tool.setuptools_scm]
-write_to = "company/version.py"  # Where to write the dynamic version
+write_to = "pygbm/version.py"  # Where to write the dynamic version
 
 [tool.setuptools.packages.find]
 where = ["."]
