@@ -25,7 +25,7 @@ def primes_less_than(N):
         is_prime = True
         
         # Check if num has any divisors other than 1 and itself
-        # Only test divisors up to the square root of num (optimization)
+        # Only test divisors up to the square root of num (for optimization)
         for i in range(2, int(num**0.5) + 1):
             if num % i == 0:  # If num is divisible by i, it's not prime
                 is_prime = False
