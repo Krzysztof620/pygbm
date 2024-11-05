@@ -32,9 +32,11 @@ dependencies = [
 "Source" = "https://github.com/Krzysztof620/pygbm"
 "Issues" = "https://github.com/Krzysztof620/pygbm/issues"
 
-
 [tool.setuptools_scm]
 write_to = "pygbm/version.py"  # Where to write the dynamic version
 
 [tool.setuptools.packages.find]
 where = ["."]
+
+[project.scripts]
+pygbm = "pygbm.cli:main"

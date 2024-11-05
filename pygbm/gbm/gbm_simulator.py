@@ -1,5 +1,5 @@
 import numpy as np
-from .base_simulator import BaseSimulator
+from ..base_simulator import BaseSimulator
 
 class GBMSimulator(BaseSimulator):
     def __init__(self, y0, mu, sigma):

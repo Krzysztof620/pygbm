@@ -1,6 +1,7 @@
 import argparse
 import matplotlib.pyplot as plt
-from .gbm_simulator import GBMSimulator
+from .gbm.gbm_simulator import GBMSimulator
+
 
 def simulate_gbm(y0, mu, sigma, T, N):
     """
@@ -20,6 +21,7 @@ def simulate_gbm(y0, mu, sigma, T, N):
     simulator = GBMSimulator(y0, mu, sigma)
     t_values, y_values = simulator.simulate_path(T, N)
     return t_values, y_values
+
 
 def plot_gbm(t_values, y_values, output=None):
     """
@@ -44,19 +46,32 @@ def plot_gbm(t_values, y_values, output=None):
     else:
         plt.show()
 
+
 def main():
     # Set up the argument parser
-    parser = argparse.ArgumentParser(description="Simulate a Geometric Brownian Motion path.")
+    parser = argparse.ArgumentParser(
+        description="Simulate a Geometric Brownian Motion path."
+    )
     subparsers = parser.add_subparsers(dest="command")
 
     # Define the "simulate" command
     simulate_parser = subparsers.add_parser("simulate", help="Simulate a GBM path")
-    simulate_parser.add_argument("--y0", type=float, required=True, help="Initial value Y(0)")
+    simulate_parser.add_argument(
+        "--y0", type=float, required=True, help="Initial value Y(0)"
+    )
     simulate_parser.add_argument("--mu", type=float, required=True, help="Drift term")
-    simulate_parser.add_argument("--sigma", type=float, required=True, help="Volatility term")
-    simulate_parser.add_argument("--T", type=float, required=True, help="Total time for simulation")
-    simulate_parser.add_argument("--N", type=int, required=True, help="Number of time steps")
-    simulate_parser.add_argument("--output", type=str, help="File path to save the plot as an image")
+    simulate_parser.add_argument(
+        "--sigma", type=float, required=True, help="Volatility term"
+    )
+    simulate_parser.add_argument(
+        "--T", type=float, required=True, help="Total time for simulation"
+    )
+    simulate_parser.add_argument(
+        "--N", type=int, required=True, help="Number of time steps"
+    )
+    simulate_parser.add_argument(
+        "--output", type=str, help="File path to save the plot as an image"
+    )
 
     # Parse arguments
     args = parser.parse_args()
@@ -65,9 +80,10 @@ def main():
     if args.command == "simulate":
         # Call the simulate function
         t_values, y_values = simulate_gbm(args.y0, args.mu, args.sigma, args.T, args.N)
-        
+
         # Call the plot function
         plot_gbm(t_values, y_values, args.output)
+
 
 if __name__ == "__main__":
     main()
